@@ -2,7 +2,7 @@
 <!--robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="ur5"-->
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="ur5">
   <!-- common stuff -->
-  <!--xacro:include filename="$(find ur_description)/urdf/common.gazebo.xacro" /-->
+  <xacro:include filename="$(find ur_description)/urdf/common.gazebo.xacro" />
 
   <!-- ur5 -->
   <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
@@ -13,7 +13,7 @@
   <joint name="world_joint" type="fixed">
     <parent link="world" />
     <child link = "base_link" />
-    <origin rpy="0.0 0.0 0.0" xyz="0.04 0.46 0.8" />
+    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
   </joint>
 
   <xacro:ur5_robot prefix="" joint_limited="true"/>
