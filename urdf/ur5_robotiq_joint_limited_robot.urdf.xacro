@@ -4,17 +4,17 @@
 <!-- common stuff -->
 <xacro:include filename="$(find ur_description)/urdf/common.gazebo.xacro" />
 
-  <!-- ur5 -->
-  <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
+<!-- ur5 -->
+<xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
 
  <!-- table leg  to world-->
-  <link name="world" />
+  <!--link name="world" /-->
 
-  <joint name="world_joint" type="fixed">
+  <!--joint name="world_joint" type="fixed">
     <parent link="world" />
     <child link = "table_top_link" />
     <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
-  </joint>
+  </joint-->
 
   <!-- arm top table-->
 <xacro:include filename="$(find manipulator_description)/urdf/table.urdf.xacro" />
@@ -22,7 +22,7 @@
  <joint name="table_joint" type="fixed">
     <parent link="table_top_link" />
     <child link = "base_link" />
-    <origin xyz="${table_x} ${table_y} ${table_z+table_height}" rpy="0.0 0.1 0.0" />
+    <origin xyz="${table_x} -0.21 ${table_height+0.005}" rpy="0.0 0.0 0.0" />
   </joint>
 
   <xacro:ur5_robot prefix="" joint_limited="true"/>
