@@ -7,22 +7,23 @@
 <!-- ur5 -->
 <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
 
- <!-- table leg  to world-->
-  <!--link name="world" /-->
+<!-- table -->
 
-  <!--joint name="world_joint" type="fixed">
+<xacro:include filename="$(find manipulator_description)/urdf/table.urdf.xacro" />
+ <!-- table leg  to world-->
+  <link name="world" />
+
+  <joint name="world_joint" type="fixed">
     <parent link="world" />
-    <child link = "table_top_link" />
-    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0" />
-  </joint-->
+    <child link = "base_link" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+  </joint>
 
   <!-- arm top table-->
-<xacro:include filename="$(find manipulator_description)/urdf/table.urdf.xacro" />
-
  <joint name="table_joint" type="fixed">
-    <parent link="table_top_link" />
-    <child link = "base_link" />
-    <origin xyz="${table_x} -0.21 ${table_height+0.005}" rpy="0.0 0.0 0.0" />
+    <parent link="world"/>
+    <child link="table_top_link" />
+    <origin xyz="-${table_x} +0.21 -${table_height}" rpy="0.0 0.0 0.0" />
   </joint>
 
   <xacro:ur5_robot prefix="" joint_limited="true"/>
@@ -30,11 +31,9 @@
 <!-- gripper -->
   <xacro:include filename="$(find robotiq_arg2f_model_visualization)/urdf/robotiq_arg2f_140_model_macro.xacro" />
   <xacro:robotiq_arg2f_140 prefix=""/>
-
   <joint name="ee_robotiq_joint" type="fixed">
     <parent link="ee_link"/>
     <child link="robotiq_arg2f_base_link"/>
     <origin xyz="0.0 0.0 0.0" rpy="0.0 1.57 0.0" />
   </joint>
-
 </robot>
